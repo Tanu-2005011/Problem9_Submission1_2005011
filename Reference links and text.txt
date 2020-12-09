@@ -1,0 +1,29 @@
+The equations come from the standard BLDC model (these equations were taken from a book entitled Permanent Magnet Synchronous And Brushless Dc Motors by Krishnan Ramu).
+
+The inputs to the model are the following: the state vector, Y, (which contains id, iq, speed, and position, theta); a cluster containing the motor constants for the system; input voltages vd and vq; and a mechanical torque, Tm. The code uses three single-cycle timed loops to calculate each of the first three elements of the dy/dt output vector. The equations for the elements of dy/dt are as follows:
+
+element 0 -- did/dt = 1/L * vd - R/L * id + w * iq
+
+element 1 -- dIq/dt = 1/L * vq - R/L * iq - w * id - lamda * w/L
+
+element 2 -- dw/dt = 1/J * (Te - Fw - Tm) where Te = 1.5 * lamda * iq
+
+L motor inductance
+
+R resistance of the stator windings
+
+vd, id voltage and current in d-direction
+
+vq, iq voltage in q-direction
+
+w angular velocity of the rotor
+
+lamda amplitude of the flux induced by the magnets of the rotor in the stator phases
+
+J inertia of rotor and load
+
+F viscous friction of the model
+
+Te electromagnetic torque
+
+Tm mechanical torque
